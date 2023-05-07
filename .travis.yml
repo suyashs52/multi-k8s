@@ -13,3 +13,11 @@ after_success:
   - docker build -t suyash/mutli-nginx ./nginx 
   - docker build -t suyash/mutli-server ./server 
   - docker build -t suyash/mutli-worker ./worker 
+
+  # login to travis ci
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+  - docker push suyash/mutli-client 
+  - docker push suyash/mutli-nginx 
+  - docker push suyash/mutli-server 
+  - docker push suyash/mutli-worker 
