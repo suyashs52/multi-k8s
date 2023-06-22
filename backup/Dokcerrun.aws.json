@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "suyashs52/mutli-client",
+            "hostname": "client",
+            "essential": false 
+        },{
+            "name": "server",
+            "image": "suyashs52/mutli-server",
+            "hostname": "api",
+            "essential" : false
+        },{
+            "name":"worker",
+            "image":"suyashs52/mutli-worker",
+            "hostname":"worker",
+            "essential":false
+        },{
+            "name":"nginx",
+            "image":"suyashs52/mutli-nginx",
+            "hostname":"hostname",
+            "essential":true,
+            "portMappings":[
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "links": ["client","server"]
+        }
+    ]
+}
